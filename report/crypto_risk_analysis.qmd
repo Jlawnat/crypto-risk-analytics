@@ -1,0 +1,22 @@
+---
+title: "Cryptocurrency Risk Analytics Platform"
+author: "Elliot Yang"
+date: today
+format: html
+editor: visual
+---
+
+```{r}
+library(quantmod)
+
+getSymbols(c("BTC-USD",
+             "ETH-USD",
+             "SOL-USD",
+             "BNB-USD"),
+           src = "yahoo",
+           from = "2020-01-01")
+```
+
+```{r}
+
+```
