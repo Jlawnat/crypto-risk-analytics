@@ -1,45 +1,109 @@
-# crypto-risk-analytics
+# Crypto Risk Analytics & Forecasting System
 
 ## Project Overview
 
-Cryptocurrencies are among the most volatile financial assets in modern markets. Understanding their risk characteristics is essential for investors, portfolio managers, and financial institutions.
+This project develops an automated cryptocurrency forecasting and risk analytics system in R.
 
-This project analyses the volatility dynamics and downside risk of five major cryptocurrencies using advanced financial econometric models. The study compares volatility persistence, asymmetric shock responses, and Value-at-Risk measures to identify which cryptocurrency exhibits the greatest market risk.
-The cryptocurrencies analysed are:
+The system downloads the latest market data directly from Yahoo Finance, preprocesses historical prices, selects appropriate time-series models, forecasts future returns and volatility, estimates Value-at-Risk (VaR), and generates professional reports automatically.
+
+Rather than analysing a single cryptocurrency, the framework is designed to monitor multiple digital assets continuously and provide an up-to-date assessment of market risk.
+Currently the project analyses:
 
 - Bitcoin (BTC)
 - Ethereum (ETH)
 - Solana (SOL)
 - Binance Coin (BNB)
 
-## Research Question
+The project is fully reproducible and can be updated automatically as new market data become available.
 
-Which cryptocurrency exhibits the highest volatility persistence, strongest response to adverse market shocks, and greatest downside risk?
+## Research obj
+To develop an automated forecasting framework that continuously evaluates cryptocurrency market risk using modern financial econometric models.
 
-## Methods
+The project aims to answer:
 
-- Data collection from Yahoo Finance
-- Log return calculation
-- Descriptive statistical analysis
-- Stationarity testing using the Augmented Dickey-Fuller (ADF) test
-- ARCH effect testing
-- GARCH(1,1) volatility modelling
-- GJR-GARCH(1,1) asymmetric volatility modelling
-- EGARCH(1,1) volatility modelling
-- Volatility persistence comparison
-- Value-at-Risk (VaR) estimation
-- Volatility forecasting and risk ranking
-## Tools
+- How can cryptocurrency returns and volatility be forecast automatically?
+- Which volatility model provides the best forecasting performance?
+- How does market risk evolve over time?
+- How much capital is required to protect against extreme downside risk?
+- 
+## Features
+Automatic data download from Yahoo Finance
 
-- R
-- Quarto
-- quantmod
-- rugarch
-- tidyverse
+ Automatic data cleaning
 
-## Expected Outcomes
+ Log return calculation
 
-The project identifies which cryptocurrency presents the highest level of market risk and evaluates whether negative shocks have a greater impact on volatility than positive shocks. The findings provide insights into cryptocurrency risk management and portfolio allocation decisions.
+ Exploratory data analysis
+
+ Stationarity testing (ADF)
+
+ ARCH effect detection
+
+ ARMA model selection
+
+ Volatility modelling
+
+- GARCH(1,1)
+- EGARCH
+- GJR-GARCH
+
+ Rolling volatility forecasting
+
+ Value-at-Risk estimation
+
+ Forecast evaluation
+
+ Automatic report generation
+
+## project workflow
+1. Download cryptocurrency prices
+
+2. Clean and preprocess data
+
+3. Compute log returns
+
+4. Perform statistical analysis
+
+5. Test stationarity
+
+6. Select forecasting models
+
+7. Estimate volatility models
+
+8. Produce forecasts
+
+9. Calculate Value-at-Risk
+
+10. Generate figures and summary reports
+
+## models
+
+The project currently implements
+
+- ARMA
+- GARCH(1,1)
+- EGARCH
+- GJR-GARCH
+
+Additional models will be added as the project develops.
+
+## Future Development
+
+Future versions of the project will include
+
+- Automatic model selection
+
+- Rolling-window forecasting
+
+- Daily automatic updates
+
+- Email notifications
+
+- Interactive dashboard
+
+- Forecast performance comparison
+
+- Portfolio risk optimisation
 
 ## Author
 
