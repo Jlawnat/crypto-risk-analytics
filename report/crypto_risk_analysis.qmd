@@ -9,14 +9,33 @@ editor: visual
 ```{r}
 library(quantmod)
 
-getSymbols(c("BTC-USD",
-             "ETH-USD",
-             "SOL-USD",
-             "BNB-USD"),
-           src = "yahoo",
-           from = "2020-01-01")
+BTC <- Ad(getSymbols("BTC-USD",
+                     src = "yahoo",
+                     from = "2020-01-01",
+                     auto.assign = FALSE))
+
+ETH <- Ad(getSymbols("ETH-USD",
+                     src = "yahoo",
+                     from = "2020-01-01",
+                     auto.assign = FALSE))
+
+SOL <- Ad(getSymbols("SOL-USD",
+                     src = "yahoo",
+                     from = "2020-01-01",
+                     auto.assign = FALSE))
+
+BNB <- Ad(getSymbols("BNB-USD",
+                     src = "yahoo",
+                     from = "2020-01-01",
+                     auto.assign = FALSE))
+
+crypto_prices <- merge(BTC, ETH, SOL, BNB)
+colnames(crypto_prices) <- c("BTC", "ETH", "SOL", "BNB")
+
 ```
 
 ```{r}
+crypto_prices=na.omit(crypto_prices)
+LR=na.omit(diff(log(crypto_prices)))
 
 ```
