@@ -25,7 +25,7 @@ The project aims to answer:
 - Which volatility model provides the best forecasting performance?
 - How does market risk evolve over time?
 - How much capital is required to protect against extreme downside risk?
-- 
+  
 ## Features
 Automatic data download from Yahoo Finance
 
