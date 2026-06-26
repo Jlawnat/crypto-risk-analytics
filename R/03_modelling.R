@@ -141,6 +141,146 @@ write.csv(
 
 
 
+library(rugarch)
+spec_garch <- ugarchspec(
+  variance.model = list(
+    model = "sGARCH",
+    garchOrder = c(1,1)
+  ),
+  mean.model = list(
+    armaOrder = c(0,0),
+    include.mean = TRUE
+  ),
+  distribution.model = "std"
+)
+
+spec_gjr <- ugarchspec(
+  variance.model = list(
+    model = "gjrGARCH",
+    garchOrder = c(1,1)
+  ),
+  mean.model = list(
+    armaOrder = c(0,0),
+    include.mean = TRUE
+  ),
+  distribution.model = "std"
+)
+
+spec_egarch <- ugarchspec(
+  variance.model = list(
+    model = "eGARCH",
+    garchOrder = c(1,1)
+  ),
+  mean.model = list(
+    armaOrder = c(0,0),
+    include.mean = TRUE
+  ),
+  distribution.model = "std"
+)
+
+
+garch_models <- list()
+
+for (coin in colnames(log_returns)) {
+  
+  garch_models[[coin]] <- ugarchfit(
+    spec = spec_garch,
+    data = log_returns[, coin]
+  )
+  
+}
+
+gjr_models <- list()
+
+for (coin in colnames(log_returns)) {
+  
+  gjr_models[[coin]] <- ugarchfit(
+    spec = spec_gjr,
+    data = log_returns[, coin]
+  )
+  
+}
+
+egarch_models <- list()
+
+for (coin in colnames(log_returns)) {
+  
+  egarch_models[[coin]] <- ugarchfit(
+    spec = spec_egarch,
+    data = log_returns[, coin]
+  )
+  
+}
+
+saveRDS(garch_models, "outputs/models/garch_models.rds")
+saveRDS(gjr_models, "outputs/models/gjr_models.rds")
+saveRDS(egarch_models, "outputs/models/egarch_models.rds")
+
+model_comparison <- data.frame(
+  Cryptocurrency = character(),
+  Model = character(),
+  AIC = numeric(),
+  BIC = numeric(),
+  LogLikelihood = numeric(),
+  stringsAsFactors = FALSE
+)
+for (coin in names(garch_models)) {
+  
+  fit <- garch_models[[coin]]
+  
+  model_comparison <- rbind(
+    model_comparison,
+    data.frame(
+      Cryptocurrency = coin,
+      Model = "GARCH(1,1)",
+      AIC = round(infocriteria(fit)[1], 4),
+      BIC = round(infocriteria(fit)[2], 4),
+      LogLikelihood = round(likelihood(fit), 4)
+    )
+  )
+}
+for (coin in names(gjr_models)) {
+  
+  fit <- gjr_models[[coin]]
+  
+  model_comparison <- rbind(
+    model_comparison,
+    data.frame(
+      Cryptocurrency = coin,
+      Model = "GJR-GARCH(1,1)",
+      AIC = round(infocriteria(fit)[1], 4),
+      BIC = round(infocriteria(fit)[2], 4),
+      LogLikelihood = round(likelihood(fit), 4)
+    )
+  )
+}
+for (coin in names(egarch_models)) {
+  
+  fit <- egarch_models[[coin]]
+  
+  model_comparison <- rbind(
+    model_comparison,
+    data.frame(
+      Cryptocurrency = coin,
+      Model = "EGARCH(1,1)",
+      AIC = round(infocriteria(fit)[1], 4),
+      BIC = round(infocriteria(fit)[2], 4),
+      LogLikelihood = round(likelihood(fit), 4)
+    )
+  )
+}
+library(dplyr)
+
+model_comparison <- model_comparison %>%
+  arrange(Cryptocurrency, AIC)
+write.csv(
+  model_comparison,
+  "outputs/tables/model_comparison.csv",
+  row.names = FALSE
+)
+
+
+
 
 
 
