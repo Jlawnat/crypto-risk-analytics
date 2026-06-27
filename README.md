@@ -1,109 +1,156 @@
 # Crypto Risk Analytics & Forecasting System
 
-## Project Overview
+## Overview
 
-This project develops an automated cryptocurrency forecasting and risk analytics system in R.
+This project develops an automated cryptocurrency volatility forecasting system using GARCH-family models in R. The workflow downloads market data, performs statistical diagnostics, estimates multiple volatility models, automatically selects the best-performing model, evaluates forecasting performance, and generates a reproducible analytical report.
 
-The system downloads the latest market data directly from Yahoo Finance, preprocesses historical prices, selects appropriate time-series models, forecasts future returns and volatility, estimates Value-at-Risk (VaR), and generates professional reports automatically.
+The project demonstrates a complete financial econometrics pipeline suitable for quantitative finance, actuarial analytics, and risk management applications.
 
-Rather than analysing a single cryptocurrency, the framework is designed to monitor multiple digital assets continuously and provide an up-to-date assessment of market risk.
-Currently the project analyses:
+---
+
+## Features
+
+- Automatic download of cryptocurrency prices
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Augmented Dickey-Fuller (ADF) stationarity tests
+- ARCH effect testing
+- Estimation of:
+  - GARCH(1,1)
+  - GJR-GARCH(1,1)
+  - EGARCH(1,1)
+- Automatic model comparison using:
+  - AIC
+  - BIC
+  - Log-Likelihood
+- Automatic best model selection
+- Out-of-sample volatility forecasting
+- Forecast evaluation using RMSE and MAE
+- Value-at-Risk (95% and 99%)
+- Automated Quarto report generation
+
+---
+
+## Cryptocurrencies
 
 - Bitcoin (BTC)
 - Ethereum (ETH)
 - Solana (SOL)
 - Binance Coin (BNB)
 
-The project is fully reproducible and can be updated automatically as new market data become available.
+---
 
-## Research objectives
-To develop an automated forecasting framework that continuously evaluates cryptocurrency market risk using modern financial econometric models.
+## Repository Structure
 
-The project aims to answer:
+```
+crypto-risk-analytics/
 
-- How can cryptocurrency returns and volatility be forecast automatically?
-- Which volatility model provides the best forecasting performance?
-- How does market risk evolve over time?
-- How much capital is required to protect against extreme downside risk?
-  
-## Features
-Automatic data download from Yahoo Finance
+├── R/
+│   ├── 01_data_download.R
+│   ├── 02_data_cleaning.R
+│   ├── 03_modelling.R
+│   └── 04_forecasting.R
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── outputs/
+│   ├── forecasts/
+│   ├── models/
+│   └── tables/
+│
+├── figures/
+│
+├── report/
+│   └── report.qmd
+│
+└── README.md
+```
 
- Automatic data cleaning
+---
 
- Log return calculation
+## Methodology
 
- Exploratory data analysis
+1. Download historical cryptocurrency prices.
+2. Calculate daily log returns.
+3. Test stationarity using the ADF test.
+4. Test for ARCH effects.
+5. Estimate GARCH-family models.
+6. Compare models using AIC, BIC, and Log-Likelihood.
+7. Automatically select the best-performing model.
+8. Forecast future conditional volatility.
+9. Evaluate forecasting accuracy.
+10. Calculate Value-at-Risk.
 
- Stationarity testing (ADF)
+---
 
- ARCH effect detection
+## Example Outputs
 
- ARMA model selection
+The project automatically generates:
 
- Volatility modelling
+- Log return plots
+- Return histograms
+- Volatility forecasts
+- Model comparison tables
+- Forecast accuracy tables
+- Value-at-Risk tables
+- Automated Quarto HTML report
 
-- GARCH(1,1)
-- EGARCH
-- GJR-GARCH
+---
 
- Rolling volatility forecasting
+## Results
 
- Value-at-Risk estimation
+### BTC Conditional Volatility Forecast
 
- Forecast evaluation
+![BTC Volatility Forecast](figures/BTC_volatility_forecast.png)
 
- Automatic report generation
+### ETH Conditional Volatility Forecast
 
-## project workflow
-1. Download cryptocurrency prices
+![ETH Volatility Forecast](figures/ETH_volatility_forecast.png)
 
-2. Clean and preprocess data
+### SOL Conditional Volatility Forecast
 
-3. Compute log returns
+![SOL Volatility Forecast](figures/SOL_volatility_forecast.png)
 
-4. Perform statistical analysis
+### BNB Conditional Volatility Forecast
 
-5. Test stationarity
+![BNB Volatility Forecast](figures/BNB_volatility_forecast.png)
 
-6. Select forecasting models
+### Daily Log Returns
 
-7. Estimate volatility models
+![Daily Log Returns](figures/log_returns.png)
 
-8. Produce forecasts
+### Return Histograms
 
-9. Calculate Value-at-Risk
+![Return Histograms](figures/return_histograms.png)
 
-10. Generate figures and summary reports
+### Performance Summary
 
-## models
+![Performance Summary](figures/performance_summary.png)
 
-The project currently implements
+---
 
-- ARMA
-- GARCH(1,1)
-- EGARCH
-- GJR-GARCH
+## Software
 
-Additional models will be added as the project develops.
+- R
+- tidyverse
+- rugarch
+- quantmod
+- PerformanceAnalytics
+- ggplot2
+- Quarto
 
-## Future Development
+---
 
-Future versions of the project will include
-
-- Automatic model selection
+## Future Improvements
 
 - Rolling-window forecasting
+- Multivariate GARCH models
+- Machine learning volatility models
+- Forecast confidence intervals
+- Interactive dashboards
 
-- Daily automatic updates
-
-- Email notifications
-
-- Interactive dashboard
-
-- Forecast performance comparison
-
-- Portfolio risk optimisation
 
 ## Author
 
