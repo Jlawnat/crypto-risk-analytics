@@ -143,6 +143,18 @@ The project automatically generates:
 
 ---
 
+## Usage
+
+Run the scripts in the following order:
+
+1. `R/01_data_download.R`
+2. `R/02_data_cleaning.R`
+3. `R/03_modelling.R`
+4. `R/04_forecasting.R`
+5. Render `report/report.qmd`
+
+All figures, tables, forecasts, and the final report will be generated automatically.
+
 ## Future Improvements
 
 - Rolling-window forecasting
