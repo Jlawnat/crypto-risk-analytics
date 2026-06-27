@@ -13,21 +13,43 @@ execute:
   message: false
 ---
 
+## Executive summary
+
+This project develops an automated cryptocurrency volatility forecasting framework using GARCH-family models for Bitcoin (BTC), Ethereum (ETH), Solana (SOL), and Binance Coin (BNB). Daily log returns are analysed using three GARCH-family specifications: GARCH(1,1), GJR-GARCH(1,1), and EGARCH(1,1). The best model for each cryptocurrency is selected based on AIC, BIC, and log-likelihood before producing out-of-sample volatility forecasts. Forecast performance is evaluated using RMSE, MAE, and Value-at-Risk (VaR), with all analyses generated automatically through a reproducible Quarto workflow.
+
 ## Introduction
 
 This project develops an automated cryptocurrency volatility forecasting framework using GARCH-family models.
 
 The workflow consists of:
 
-1.  Downloading daily cryptocurrency prices
-2.  Calculating log returns
-3.  Testing stationarity using the Augmented Dickey-Fuller (ADF) test
-4.  Testing ARCH effects
-5.  Estimating GARCH(1,1), GJR-GARCH(1,1), and EGARCH(1,1)
-6.  Selecting the best-performing model using AIC, BIC and Log-Likelihood
-7.  Forecasting future volatility
-8.  Evaluating forecasting performance using RMSE and MAE
-9.  Estimating 95% and 99% Value-at-Risk
+```         
+Yahoo Finance
+      │
+      ▼
+Download Prices
+      │
+      ▼
+Calculate Log Returns
+      │
+      ▼
+ADF Test
+      │
+      ▼
+ARCH Test
+      │
+      ▼
+Estimate GARCH Models
+      │
+      ▼
+Model Selection
+      │
+      ▼
+Forecast Volatility
+      │
+      ▼
+RMSE • MAE • VaR
+```
 
 ## Data overview
 
@@ -172,3 +194,7 @@ for (coin in coins) {
 
 
 ```
+
+## Conclusion
+
+This project successfully demonstrates an automated cryptocurrency volatility forecasting framework using GARCH-family models. Statistical testing confirmed the presence of volatility clustering, supporting the use of conditional variance models. After comparing GARCH(1,1), GJR-GARCH(1,1), and EGARCH(1,1), the best-performing specification was selected for each cryptocurrency. The resulting forecasts, together with RMSE, MAE, and VaR measures, provide a reproducible framework for analysing and managing cryptocurrency market risk.
